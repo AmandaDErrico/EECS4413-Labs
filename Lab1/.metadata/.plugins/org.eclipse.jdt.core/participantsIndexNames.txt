@@ -1,0 +1,11 @@
+INDEX VERSION 1.131
+C:\Users\Amanda\Desktop\YorkU\Winter 2019 3.0\EECS4415\eecs4415-workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1505007976.index
+\studentCalc1\src
+C:\Users\Amanda\Desktop\YorkU\Winter 2019 3.0\EECS4415\eecs4415-workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3865194687.index
+\studentCalc1\src
+C:\Users\Amanda\Desktop\YorkU\Winter 2019 3.0\EECS4415\eecs4415-workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2578810074.index
+\studentCalc1\src
+C:\Users\Amanda\Desktop\YorkU\Winter 2019 3.0\EECS4415\eecs4415-workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1643765640.index
+\studentCalc1\src
+C:\Users\Amanda\Desktop\YorkU\Winter 2019 3.0\EECS4415\eecs4415-workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2581133280.index
+\studentCalc1\src
