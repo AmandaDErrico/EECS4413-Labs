@@ -37,7 +37,7 @@ public class Start extends HttpServlet {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		System.out.println("Hello, Got a GET request!");
 		
-		
+		//This is a test
 		/**
 		 * Writing to the servlet to reply to the client with a message 
 		 */
