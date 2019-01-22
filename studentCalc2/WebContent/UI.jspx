@@ -11,7 +11,7 @@
 <title>UI JSPX FILE</title>
 </head>
 <body>
-	<form action="UI" method="POST">
+	<form action="Start" method="GET">
 		<FIELDSET>
 			<LEGEND>
 				<h1>
@@ -44,7 +44,7 @@
 				<br />
 				</input></td>
 			</tr>
-			<button action='submit' name='submit' label='submit'>Submit
+			<button action='submit' name='submit' label='submit' value='amanda'>Submit
 			</button>
 		</FIELDSET>
 	</form>
