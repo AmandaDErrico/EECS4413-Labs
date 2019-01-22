@@ -98,9 +98,17 @@ public class Start extends HttpServlet {
 		String A = request.getParameter("principal"); 
 		String n = request.getParameter("period");
 		String r = request.getParameter("interest");
+		// Add fixed Interest and grace period
+		String gPeriod = request.getParameter("gracePeriod");
+		String fixedR = request.getParameter("fixedInterest");
+		// set new double total interest
+		Double totalInterest = (double) 0;
+		
 		Double principal = Double.parseDouble(this.getServletContext().getInitParameter("principal"));
 		Double period = Double.parseDouble(this.getServletContext().getInitParameter("period"));
 		Double interest = Double.parseDouble(this.getServletContext().getInitParameter("interest"));
+		Double gracePeriod = Double.parseDouble(this.getServletContext().getInitParameter("gracePeriod"));
+		Double fixedInterest = Double.parseDouble(this.getServletContext().getInitParameter("fixedInterest"));	
 		
 		if (A != null) {
 			principal = Double.parseDouble(A);
@@ -111,17 +119,35 @@ public class Start extends HttpServlet {
 		}
 		
 		if (r != null) {
-			interest = Double.parseDouble(r);			
+			interest = Double.parseDouble(r);
+			//totalInterest = interest;
 		}
+		
+		// if grace period changes in the govt (i.e its 0 now)
+		if (gPeriod != null) {
+			gracePeriod = Double.parseDouble(gPeriod);			
+		}
+		
+		if (fixedR != null) {
+			fixedInterest = Double.parseDouble(fixedR);		
+		}
+		// new total interest
+		totalInterest = fixedInterest + interest;
 		
 		resOut.write("Based on Principal=" + principal + " ");
 		resOut.write("Period=" + period + " ");
-		resOut.write("Interest=" + interest + "\n");
+		resOut.write("Interest=" + interest + " ");
+		resOut.write("Grace Period=" + gracePeriod + " ");
+		resOut.write("Fixed Interest=" + fixedInterest + " ");
+		
+		resOut.write("Total Interest=" + totalInterest + " ");
+
 		
 		Double osapFormula = ((interest/12)*principal)/(1 - Math.pow(1 + interest/12, -period));
-		
+		Double graceInterest = (principal*(((interest + fixedInterest)/12)*gracePeriod));
+		Double osapWithGrace = osapFormula + (graceInterest / gracePeriod);
 		DecimalFormat df = new DecimalFormat("#.##");
-		String roundedOsap = df.format(osapFormula); 
+		String roundedOsap = df.format(osapWithGrace); 
 		resOut.write("Monthly Payments: " + roundedOsap + "\n");
 	}
 	
@@ -133,6 +159,8 @@ public class Start extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+		String target = "/UI.jspx";
+		request.getRequestDispatcher(target).forward(request, response);
 	}
 
 }
