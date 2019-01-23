@@ -48,7 +48,7 @@ public class Start extends HttpServlet {
 			String targetRes = "/Results.jspx";
 			
 			String A = request.getParameter("principal"); 
-			String n = request.getParameter("period");
+			String n = request.getParameter("payment");
 			String r = request.getParameter("interest");
 			// Add fixed Interest and grace period
 			String gPeriod = request.getParameter("gracePeriod");
@@ -68,7 +68,7 @@ public class Start extends HttpServlet {
 				principal = Double.parseDouble(A);
 			}
 
-			if (n != null) {
+			if (n != "") {
 				period = Double.parseDouble(n);			
 			}
 
