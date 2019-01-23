@@ -94,7 +94,7 @@ public class Start extends HttpServlet {
 				DecimalFormat dfGrace = new DecimalFormat("#.##");
 				String roundedGrace = dfGrace.format(graceInterest);
 				
-				request.setAttribute("interest",roundedGrace);
+				request.setAttribute("interest",roundedGrace); 
 				request.setAttribute("mPayment",roundedOsapGrace);				
 			}
 			else {
