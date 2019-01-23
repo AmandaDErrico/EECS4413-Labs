@@ -83,14 +83,13 @@ public class Start extends HttpServlet {
 			Double osapFormula = (interestPerMonth*principal)/(1 - (Math.pow(1 + interestPerMonth, -period)));
 			Double graceInterest = (principal*(((totalInterest)/12)*gracePeriod));
 			Double osapWithGrace = osapFormula + (graceInterest / gracePeriod);
-			
+
 			DecimalFormat dfOsap = new DecimalFormat("#.##");
 			String roundedOsap = dfOsap.format(osapFormula);
 			
 			DecimalFormat dfGraceOsap = new DecimalFormat("#.##");
 			String roundedOsapGrace = dfGraceOsap.format(osapWithGrace); 
 			
-			System.out.println(gracePeriod);
 			if (request.getParameter("grace") != null) {
 				DecimalFormat dfGrace = new DecimalFormat("#.##");
 				String roundedGrace = dfGrace.format(graceInterest);
@@ -102,7 +101,7 @@ public class Start extends HttpServlet {
 				graceInterest = (double) 0;
 				DecimalFormat dfGrace = new DecimalFormat("#.##");
 				String roundedGrace = dfGrace.format(graceInterest);
-				
+				System.out.println(osapFormula);
 				request.setAttribute("interest",roundedGrace);
 				request.setAttribute("mPayment",roundedOsap);
 			}
