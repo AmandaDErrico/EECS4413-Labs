@@ -9,43 +9,47 @@
 	<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>UI JSPX FILE</title>
+<link rel="StyleSheet" href="res/mc.css" type="text/css" title="cse4413"
+	media="screen, print" />
 </head>
 <body>
 	<form action="Start" method="GET">
 		<FIELDSET>
-			<LEGEND>
-				<h1>
-					<B>Student Loan Application</B>
-				</h1>
-			</LEGEND>
-			<tr>
-				<td><label for="principal"><b>Principal</b><br />(total
-						loan amount after studies)<br /></label></td>
-				<td><input type="number" step="0.01" id="principal"
-					name="principal"><br />
-				</input></td>
+			<LEGEND> Student Loan Application </LEGEND>
+			<TABLE>
 
-				<td><label for="interest"><br />
-					<b>Annual Interest Rate</b><br /></label></td>
-				<td><input type="number" step="0.01" id="interest"
-					name="interest"><br />
-				</input></td>
-
-				<td><label for="payment"><br />
-					<b>Payment Period</b><br />(total number of months)<br /></label></td>
-				<td><input type="number" step="0.01" id="payment"
-					name="payment"><br />
-				</input></td>
-
-				<td><label for="grace"><br />
-					<b>Grace Period</b><br />(Take advantage of 6 month grace period<br />and
-						include grace period interest with<br />your loan balance)<br /></label></td>
-				<td><input type="number" step="0.01" id="grace" name="grace"><br />
-				<br />
-				</input></td>
-			</tr>
-			<button action='submit' name='submit' label='submit' value='amanda'>Submit
-			</button>
+				<tr>
+					<td><label for="principal">Principal
+							<div>(total loan amount after studies)</div>
+					</label></td>
+					<td><input type="number" step="0.01" id="principal"
+						name="principal"> </input></td>
+				</tr>
+				<tr>
+					<td><label for="interest">Annual Interest Rate</label></td>
+					<td><input type="number" step="0.01" id="interest"
+						name="interest"> </input></td>
+				</tr>
+				<tr>
+					<td><label for="payment">Payment Period
+							<div>(total number of months)</div>
+					</label></td>
+					<td><input type="number" step="0.01" id="payment"
+						name="payment"> </input></td>
+				</tr>
+				<tr>
+					<td><label for="grace">Grace Period
+							<div>(Take advantage of 6 month grace period and include
+								grace period interest with your loan balance)</div>
+					</label></td>
+					<td><input type="checkbox" id="grace" name="grace"
+						value="checkbox"><br /> </input></td>
+				</tr>
+				<tr>
+					<td><button action='submit' name='submit' label='submit'
+							value='amanda'>Submit</button></td>
+				</tr>
+			</TABLE>
 		</FIELDSET>
 	</form>
 </body>

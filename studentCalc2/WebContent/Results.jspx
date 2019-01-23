@@ -9,13 +9,20 @@
 	<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>Results of OSAP calculation</title>
+<link rel="StyleSheet" href="res/mc.css" type="text/css" title="cse4413"
+	media="screen, print" />
 </head>
 <body>
-	<form action="http://www.cse.yorku.ca/" method="POST">
+	<form action="" method="GET">
 		<FIELDSET>
+			<LEGEND>
+				<h1>
+					<B>Student Loan Application</B>
+				</h1>
+			</LEGEND>
 			<tr>
 				<td>Grace Interest:</td>
-				<td>${requestScope['graceR']}<br /></td>
+				<td>${requestScope['interest']}<br /></td>
 			</tr>
 			<tr>
 				<td>Monthly Payments:</td>

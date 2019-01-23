@@ -69,10 +69,12 @@ public class Start extends HttpServlet {
 			Double totalInterest = (double) 0;
 			
 			Double principal = Double.parseDouble(this.getServletContext().getInitParameter("principal"));
-			System.out.println("Value of prin = " + principal);
+		//	System.out.println("Value of prin = " + principal);
 			Double period = Double.parseDouble(this.getServletContext().getInitParameter("period"));
 			Double interest = Double.parseDouble(this.getServletContext().getInitParameter("interest"));
-			Double gracePeriod = Double.parseDouble(this.getServletContext().getInitParameter("gracePeriod"));
+//			Double gracePeriod = Double.parseDouble(this.getServletContext().getInitParameter("gracePeriod"));
+			
+			Double gracePeriod = Double.parseDouble(this.getServletContext().getInitParameter("gracePeriod"));;
 			Double fixedInterest = Double.parseDouble(this.getServletContext().getInitParameter("fixedInterest"));	
 			
 			if (A != "") {
@@ -89,14 +91,12 @@ public class Start extends HttpServlet {
 			}
 		//	System.out.println("Value of interest = " + interest);
 			// if grace period changes in the govt (i.e its 0 now)
-			if (gPeriod != null) {
-				gracePeriod = Double.parseDouble(gPeriod);			
-			}
+
+			//gracePeriod = 
+
 		//	System.out.println("Value of grace period = " + gracePeriod);	
-			if (fixedR != null) {
-				fixedInterest = Double.parseDouble(fixedR);		
-			}
-			System.out.println("Value of fixed interest = " + fixedInterest);
+			//fixedInterest = Double.parseDouble(fixedR);		
+		//	System.out.println("Value of fixed interest = " + fixedInterest);
 			// new total interest
 			totalInterest = fixedInterest + interest;
 	
@@ -104,20 +104,45 @@ public class Start extends HttpServlet {
 			Double graceInterest = (principal*(((totalInterest)/12)*gracePeriod));
 			Double osapWithGrace = osapFormula + (graceInterest / gracePeriod);
 			
-			DecimalFormat df = new DecimalFormat("#.##");
-			String roundedOsap = df.format(osapWithGrace);
-			DecimalFormat df2 = new DecimalFormat("#.##");
-			String roundedGrace = df2.format(graceInterest); 
-			
-			request.setAttribute("graceR",roundedGrace);
-			request.setAttribute("mPayment",roundedOsap);
-	
+			DecimalFormat dfOsap = new DecimalFormat("#.##");
+			String roundedOsap = dfOsap.format(osapFormula);
 
+//			DecimalFormat dfGrace = new DecimalFormat("#.##");
+//			String roundedGrace = dfGrace.format(graceInterest);
+			
+			DecimalFormat dfGraceOsap = new DecimalFormat("#.##");
+			String roundedOsapGrace = dfGraceOsap.format(osapWithGrace); 
+			
+			System.out.println(gracePeriod);
+			if (request.getParameter("grace") != null) {
+				DecimalFormat dfGrace = new DecimalFormat("#.##");
+				String roundedGrace = dfGrace.format(graceInterest);
+				
+				request.setAttribute("interest",roundedGrace);
+				request.setAttribute("mPayment",roundedOsapGrace);				
+			}
+			else {
+				graceInterest = (double) 0;
+				DecimalFormat dfGrace = new DecimalFormat("#.##");
+				String roundedGrace = dfGrace.format(graceInterest);
+				
+				request.setAttribute("interest",roundedGrace);
+				request.setAttribute("mPayment",roundedOsap);
+			}
+			
+
+	
+//			Writer resOut = response.getWriter();
+//			String cType = request.getContentType();
+//			Long cLength = request.getContentLengthLong();
+//			System.out.println("Content length and content Type are: " + cLength + " and " + cType + ", respectively\n");
+			
 			request.getRequestDispatcher(targetRes).forward(request, response);	
 			
-//			response.setContentType("text/plain");
-//			Writer resOut = response.getWriter();
-//			resOut.write("Total Monthly Payments with grace period and interest: " + roundedOsap + "\n");
+			// If action is Lassonde website in Results.jspx, gets redirected after restarting
+			
+			//response.setContentType("text/plain");
+
 		}
 		else {
 			String target = "/UI.jspx";
