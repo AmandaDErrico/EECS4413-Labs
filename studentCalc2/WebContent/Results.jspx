@@ -11,7 +11,7 @@
 <title>Results of OSAP calculation</title>
 </head>
 <body>
-	<form action="" method="GET">
+	<form action="http://www.cse.yorku.ca/" method="POST">
 		<FIELDSET>
 			<tr>
 				<td>Grace Interest:</td>
