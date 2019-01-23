@@ -64,15 +64,15 @@ public class Start extends HttpServlet {
 			Double gracePeriod = Double.parseDouble(this.getServletContext().getInitParameter("gracePeriod"));;
 			Double fixedInterest = Double.parseDouble(this.getServletContext().getInitParameter("fixedInterest"));	
 			
-			if (A != "") {
+			if (A != null && A != "") {
 				principal = Double.parseDouble(A);
 			}
 
-			if (n != "") {
+			if (n != null && n != "") {
 				period = Double.parseDouble(n);			
 			}
 
-			if (r != "") {
+			if (r != null && r != "") {
 				interest = Double.parseDouble(r);
 
 			}
