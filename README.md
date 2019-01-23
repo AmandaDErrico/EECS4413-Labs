@@ -6,3 +6,8 @@ Lab 1 is an introductory lab that introduces:
 -setup of the development environment
 -deployment and running of simple html, jsp and servlets 
 -understanding the APIs of the Servlet’s HTTP request and response
+
+Lab 2 builds on Lab 1 and enhances:
+-understanding of forms, servlets, jsp
+-learning of program forms, servlets, jsp, css
+-UI application development that use cases
