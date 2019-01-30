@@ -13,7 +13,7 @@
 	media="screen, print" />
 </head>
 <body>
-	<form action="Start" method="POST">
+	<form action="Start" method="GET">
 		<FIELDSET>
 			<LEGEND> Student Loan Application </LEGEND>
 			<TABLE>
@@ -23,19 +23,19 @@
 							<div>(total loan amount after studies)</div>
 					</label></td>
 					<td><input type="number" step="0.01" id="principal"
-						name="principal"> </input></td>
+						name="principal" value="${sessionScope['principal']}"> </input></td>
 				</tr>
 				<tr>
 					<td><label for="interest">Annual Interest Rate</label></td>
 					<td><input type="number" step="0.01" id="interest"
-						name="interest"> </input></td>
+						name="interest" value="${sessionScope['interest']}"> </input></td>
 				</tr>
 				<tr>
 					<td><label for="payment">Payment Period
 							<div>(total number of months)</div>
 					</label></td>
 					<td><input type="number" step="0.01" id="payment"
-						name="payment"> </input></td>
+						name="payment" value="${sessionScope['payment']}"> </input></td>
 				</tr>
 				<tr>
 					<td><label for="grace">Grace Period
