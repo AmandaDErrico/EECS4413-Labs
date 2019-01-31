@@ -19,16 +19,16 @@
 		<FIELDSET>
 			<LEGEND>
 				<h1>
-					<B>Student Loan Application</B>
+					<B>${sAppTitle}</B>
 				</h1>
 			</LEGEND>
 			<tr>
 				<td>Grace Interest:</td>
-				<td>${requestScope['interestR']}<br /></td>
+				<td><f:formatNumber type="currency">${requestScope['interestR']}</f:formatNumber><br /></td>
 			</tr>
 			<tr>
 				<td>Monthly Payments:</td>
-				<td>${requestScope['mPayment']}<br /></td>
+				<td><f:formatNumber type="currency">${requestScope['mPayment']}</f:formatNumber><br /></td>
 			</tr>
 			<button action='restart' name='restart' label='restart'>Restart
 			</button>
