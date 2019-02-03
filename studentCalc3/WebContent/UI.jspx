@@ -19,7 +19,19 @@
 		<FIELDSET>
 			<LEGEND>${sAppTitle}</LEGEND>
 			<TABLE>
-
+				<tr>
+					<c:choose>
+						<c:when test="${principalE}">
+							<td><label for="principalE"><font size="4" color="red">Principal must be greater than 0!</font>
+					</label></td></c:when>
+						<c:when test="${interestE}">
+							<td><label for="interestE"><font size="4" color="red">Interest must be greater than 0!</font>
+					</label></td></c:when>
+						<c:when test="${periodE}">
+							<td><label for="periodE"><font size="4" color="red">Period must be greater than 0!</font>
+					</label></td></c:when>
+					</c:choose>
+				</tr>
 				<tr>
 					<td><label for="principal">Principal
 							<div>(total loan amount after studies)</div>
@@ -36,8 +48,8 @@
 					<td><label for="payment">Payment Period
 							<div>(total number of months)</div>
 					</label></td>
-					<td><input type="number" step="1" id="payment"
-						name="payment" value="${payment}"> </input></td>
+					<td><input type="number" step="1" id="payment" name="payment"
+						value="${payment}"> </input></td>
 				</tr>
 				<tr>
 					<td><label for="grace">Grace Period

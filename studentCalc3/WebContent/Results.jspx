@@ -30,7 +30,7 @@
 				<td>Monthly Payments:</td>
 				<td><f:formatNumber type="currency">${requestScope['mPayment']}</f:formatNumber><br /></td>
 			</tr>
-			<button action='restart' name='restart' label='restart'>Restart
+			<button action='restart' name='recompute' label='restart'>Re-compute
 			</button>
 		</FIELDSET>
 	</form>
