@@ -1,19 +1,16 @@
 package listener;
 
-import javax.servlet.ServletRequestAttributeEvent;
+import javax.servlet.ServletContextAttributeEvent;
+import javax.servlet.ServletContextAttributeListener;
 import javax.servlet.annotation.WebListener;
-import javax.servlet.http.HttpSessionAttributeListener;
-import javax.servlet.http.HttpSessionBindingEvent;
 
 /**
  * Application Lifecycle Listener implementation class MaxPrincipal
  *
  */
 @WebListener
-public class MaxPrincipal implements HttpSessionAttributeListener {
-//	int mpCounter = 0;
-//	boolean added=false;
-	public static double maxP=0;
+public class MaxPrincipal implements ServletContextAttributeListener {
+	public static double maxP = 0;
 
 	/**
 	 * Default constructor.
@@ -23,31 +20,36 @@ public class MaxPrincipal implements HttpSessionAttributeListener {
 	}
 
 	/**
-	 * @see HttpSessionAttributeListener#attributeAdded(HttpSessionBindingEvent)
+	 * @see ServletContextAttributeListener#attributeAdded(ServletContextAttributeEvent)
 	 */
-	public void attributeAdded(HttpSessionBindingEvent arg0) {
+	public void attributeAdded(ServletContextAttributeEvent arg0) {
 		// TODO Auto-generated method stub
 		attributeReplaced(arg0);
 	}
 
 	/**
-	 * @see HttpSessionAttributeListener#attributeRemoved(HttpSessionBindingEvent)
+	 * @see ServletContextAttributeListener#attributeRemoved(ServletContextAttributeEvent)
 	 */
-	public void attributeRemoved(HttpSessionBindingEvent arg0) {
+	public void attributeRemoved(ServletContextAttributeEvent arg0) {
 		// TODO Auto-generated method stub
-		// never reaches this case bc always a default value
+		
 	}
 
 	/**
-	 * @see HttpSessionAttributeListener#attributeReplaced(HttpSessionBindingEvent)
+	 * @see ServletContextAttributeListener#attributeReplaced(ServletContextAttributeEvent)
 	 */
-	public void attributeReplaced(HttpSessionBindingEvent arg0) {
+	public void attributeReplaced(ServletContextAttributeEvent arg0) {
 		// TODO Auto-generated method stub
-		// arg0 is the value you want to replace
-		if (arg0.getName().equals("principal")) { // if principal was updated after change
-			double tempMp = Double.parseDouble(arg0.getValue().toString()); // get the value for the new principal
-			if (tempMp > maxP) { // see if the new prin value is greater than previous max, if it is replace it and update new max
-				maxP = tempMp; // can access maxP in another java class, but if you want to access in html, do setAttribute
+		// TODO Auto-generated method stub
+		System.out.println("Value is: " + arg0.getName());
+		if (arg0.getName().equals("principal")) {
+			Double tempMaxVal = Double.parseDouble(arg0.getValue().toString());
+			// print(maxP);
+			if (tempMaxVal > maxP) {
+				maxP = tempMaxVal;
+				// System.out.println("MaxP is: " + maxP);
+				// arg0.getSession().setAttribute("te", maxP);
+				// System.out.println("MaxP is: " + maxP);
 			}
 		}
 	}

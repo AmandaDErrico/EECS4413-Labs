@@ -11,41 +11,51 @@
 	<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>UI JSPX FILE</title>
+<script type="text/javascript" src="res/mc.js">
+	;
+</script>
 <link rel="StyleSheet" href="res/mc.css" type="text/css" title="cse4413"
 	media="screen, print" />
 </head>
 <body>
-	<form action="Start" method="GET">
+	<form action="Start" method="GET" onsubmit="return validate();">
 		<FIELDSET>
 			<LEGEND>${sAppTitle}</LEGEND>
 			<TABLE>
 				<tr>
 					<c:choose>
 						<c:when test="${principalE}">
-							<td><label for="principalE"><font size="4" color="red">Principal must be greater than 0!</font>
-					</label></td></c:when>
+							<td><label for="principalE"><font size="4"
+									color="red">Principal must be greater than 0!</font> </label></td>
+						</c:when>
 						<c:when test="${interestE}">
-							<td><label for="interestE"><font size="4" color="red">Interest must be greater than 0!</font>
-					</label></td></c:when>
+							<td><label for="interestE"><font size="4"
+									color="red">Interest must be greater than 0!</font> </label></td>
+						</c:when>
 						<c:when test="${periodE}">
-							<td><label for="periodE"><font size="4" color="red">Period must be greater than 0!</font>
-					</label></td></c:when>
+							<td><label for="periodE"><font size="4" color="red">Period
+										must be greater than 0!</font> </label></td>
+						</c:when>
 					</c:choose>
 				</tr>
 				<tr>
-					<td><label for="principal">Principal
+					<td><label id="principalText" for="principal">Principal
+							<span id="perror" style="color: red; display: none">*</span>
 							<div>(total loan amount after studies)</div>
 					</label></td>
 					<td><input type="number" step="0.01" id="principal"
 						name="principal" value="${principal}"> </input></td>
 				</tr>
 				<tr>
-					<td><label for="interest">Annual Interest Rate</label></td>
+					<td><label id="interestText" for="interest">Annual
+							Interest Rate <span id="ierror" style="color: red; display: none">*</span>
+					</label></td>
 					<td><input type="number" step="0.01" id="interest"
 						name="interest" value="${interest}"> </input></td>
 				</tr>
 				<tr>
-					<td><label for="payment">Payment Period
+					<td><label id="periodText" for="payment">Payment
+							Period <span id="p1error" style="color: red; display: none">*</span>
 							<div>(total number of months)</div>
 					</label></td>
 					<td><input type="number" step="1" id="payment" name="payment"
@@ -68,8 +78,38 @@
 					</c:choose>
 				</tr>
 				<tr>
-					<td><button action='submit' name='submit' label='submit'
-							value='amanda'>Submit</button></td>
+
+							<td><button action='submit' name='submit' label='submit'
+									value='amanda'>Submit</button></td>
+
+							<td>
+								<div>
+									<button action='submit' name='ajax' value='true'
+										onclick="doSimpleAjax('/studentCalc4/Startup/Ajax/');return false">Submit
+										(Ajax)</button>
+									<p id="ajaxTarget"></p>
+								</div>
+							</td>
+
+
+
+
+				</tr>
+				<tr>
+					<c:choose>
+						<c:when test="${graceI}">
+							<td>Grace Interest:</td>
+							<td><f:formatNumber type="currency">${requestScope['interestR']}</f:formatNumber><br /></td>
+						</c:when>
+					</c:choose>
+				</tr>
+				<tr>
+					<c:choose>
+						<c:when test="${monthlyP}">
+							<td>Monthly Payments:</td>
+							<td><f:formatNumber type="currency">${requestScope['mPayment']}</f:formatNumber><br /></td>
+						</c:when>
+					</c:choose>
 				</tr>
 			</TABLE>
 		</FIELDSET>

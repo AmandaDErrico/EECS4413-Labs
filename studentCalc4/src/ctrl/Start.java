@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+//import listener.MaxPrincipal;
 import model.Loan;
 
 /**
@@ -28,6 +29,10 @@ public class Start extends HttpServlet {
 	private Double principal;
 	private Double interest;
 	private Double period;
+	private static final String COMM="comm";
+	private static final String AJAX="ajax";
+	private static final String FPAGE = "formPage";
+	private static final String APAGE = "ajaxPage";
  
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -64,8 +69,13 @@ public class Start extends HttpServlet {
 		request.getServletContext().setAttribute("sAppTitle", sAppText);
 		// comment
 
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+//		response.getWriter().append("Served at: ").append(request.getContextPath());
 		System.out.println("Hello, Got a GET request!");
+		
+
+		
+
+		
 
 		// This is a test
 		/**
@@ -76,6 +86,7 @@ public class Start extends HttpServlet {
 		
 		String res = request.getParameter("recompute");
 		String sub = request.getParameter("submit");
+		String aj = request.getParameter("ajax");
 		if (res == null && sub == null) {
 			principal = Double.parseDouble(this.getServletContext().getInitParameter("principal"));
 			period = Double.parseDouble(this.getServletContext().getInitParameter("period"));
@@ -89,8 +100,13 @@ public class Start extends HttpServlet {
 		request.getServletContext().setAttribute("principalE", false);
 		request.getServletContext().setAttribute("interestE", false);
 		request.getServletContext().setAttribute("periodE", false);
+		
+		
+		request.getServletContext().setAttribute("graceI", false);
+		request.getServletContext().setAttribute("monthlyP", false);	
+		
 
-		if (sub != null) {
+		if (sub != null || aj != null) {
 			String targetRes = "/Results.jspx";
 
 			String A = request.getParameter("principal");
@@ -114,11 +130,7 @@ public class Start extends HttpServlet {
 			// update the values for the next session
 			this.updateValues(request, principal, interest, period);
 
-			System.out.println(principal);
-			System.out.println(period);
-			System.out.println(gracePeriod);
-			System.out.println(fixedInterest);
-			System.out.println(interest);
+
 
 			// check for general error message
 			String error = null;
@@ -144,10 +156,10 @@ public class Start extends HttpServlet {
 				if (error == Loan.PRINCIPAL_ERROR) {
 					request.getServletContext().setAttribute("principalE", true);
 				}
-				if (error == Loan.INTEREST_ERROR) {
+				else if (error == Loan.INTEREST_ERROR) {
 					request.getServletContext().setAttribute("interestE", true);
 				}
-				if (error == Loan.PERIOD_ERROR) {
+				else if (error == Loan.PERIOD_ERROR) {
 					request.getServletContext().setAttribute("periodE", true);
 				}
 				// redirect to UI page again
@@ -173,12 +185,20 @@ public class Start extends HttpServlet {
 					request.setAttribute("mPayment", monthlyPaymentNoGrace);
 				}
 
-				request.getRequestDispatcher(targetRes).forward(request, response);
+				if (sub != null) {
+					request.getRequestDispatcher(targetRes).forward(request, response);				
+				}
+				
+				else if (aj!=null) {
+					request.getServletContext().setAttribute("graceI", true);
+					request.getServletContext().setAttribute("monthlyP", true);	
+					request.getRequestDispatcher(targetStartPage).forward(request, response);	
+				}
+
 			}
 			// If action is Lassonde website in Results.jspx, gets redirected after
 			// restarting
 			// If testing in different browsers, gets affected bc scope in the same session
-
 		}
 
 		else {
