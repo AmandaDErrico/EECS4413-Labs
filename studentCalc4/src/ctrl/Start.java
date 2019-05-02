@@ -71,6 +71,7 @@ public class Start extends HttpServlet {
 
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
 		System.out.println("Hello, Got a GET request!");
+		//response.getWriter().flush();
 		
 
 		
