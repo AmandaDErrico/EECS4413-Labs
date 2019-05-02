@@ -1,5 +1,5 @@
 # EECS4413-Labs
-Labs for EECS4413: Building Ecommerce Systems. Each of the labs build on the next for this course.
+Labs for EECS4413: Building Ecommerce Systems. Each of the labs build on the next for this course. Lab 1-4 is one project and Lab 6 and 7 are another.
 
 Lab 1 is an introductory lab that introduces:
 -the development environment
