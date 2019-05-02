@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<jsp:root xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:f="http://java.sun.com/jsp/jstl/fmt" version="2.0">
+	<jsp:directive.page contentType="text/html; charset=ISO-8859-1"
+		pageEncoding="ISO-8859-1" session="true" />
+	<jsp:output doctype-root-element="html"
+		doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
+		doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+		omit-xml-declaration="true" />
+	<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Student Information System</title>
+</head>
+<body>
+	<form action="Start" method="GET">
+		<fieldset>
+			<legend>
+				<label for="legend">Student Information System </label>
+			</legend>
+
+			<table>
+				<tr>
+					<td><label for="prefix"> Name Prefix: </label> <br /> <input
+						id='prefix' name='prefix' type="text" value=""
+						placeholder="surname" style="width: 200px" /><br /></td>
+				</tr>
+				<tr>
+					<td><label for="minCred"> Minimum Credit Taken: </label> <br />
+						<input id='minCred' name='cTaken' type="number" value=""
+						placeholder="Minimum Credits Taken" step="1" style="width: 200px" /><br />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<button action='submit' name='report' label='report' value="true">Report</button>
+					</td>
+				</tr>
+
+				<tr>
+					<td><c:choose>
+							<c:when test="${requestScope['errorValue'] eq 1}">
+								<span><font color="red">There was an internal
+										error or the result is empty!</font></span>
+							</c:when>
+							<c:otherwise>
+								<c:choose>
+									<c:when test="${requestScope['numberOfResults'] gt -1}">
+								There are ${requestScope['numberOfResults']} entries.<br />
+										<TABLE>
+											<TR>
+												<TH>Id |</TH>
+												<TH>Name |</TH>
+												<TH>Credit Taken |</TH>
+												<TH>Credits to graduate</TH>
+											</TR>
+										</TABLE>
+										<c:forEach items="${requestScope['resultMap']}" var="key">
+											<TR>
+												<TD><c:out value="${key.sid}" />|</TD>
+												<TD><c:out value="${key.name}" />|</TD>
+												<TD><c:out value="${key.credit_taken}" />|</TD>
+												<TD><c:out value="${key.credit_grad}" /></TD>
+											</TR>
+										</c:forEach>
+									</c:when>
+									<c:otherwise>
+									</c:otherwise>
+								</c:choose>
+							</c:otherwise>
+						</c:choose></td>
+				</tr>
+			</table>
+		</fieldset>
+	</form>
+
+</body>
+	</html>
+</jsp:root>
